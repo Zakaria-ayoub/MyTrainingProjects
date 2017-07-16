@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CustomerAuthorizations.Model.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>فهرس العملاء</h2>
+
+<p>
+    <a href="/Customers/Create" class="btn btn-success btn3d">
+        <span class="glyphicon glyphicon-file"></span>انشاء ملف عميل
+    </a>
+
+</p>
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>
+            اسم العميل
+        </th>
+        <th>
+            العنوان
+        </th>
+        <th>
+            محمول
+        </th>
+        <th>
+            تليفون
+        </th>
+        <th>
+            البريد الالكتروني
+        </th>
+        <th>
+            ملاحظات
+        </th>
+        <th ></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="form-group"><span class="form-control input-sm">@item.CustomerName</span></td>
+        <td class="form-group"><span class="form-control input-sm">@item.Address</span></td>
+        <td class="form-group"><span class="form-control input-sm">@item.Tel1</span></td>
+        <td class="form-group"><span class="form-control input-sm">@item.Tel1</span></td>
+        <td class="form-group"><span class="form-control input-sm">@item.Email</span></td>
+        <td class="form-group"><span class="form-control input-sm">@item.Notes</span></td>
+        <td>
+            <div class="btn-group" aria-label="Small button group">
+                <a href="/Customers/Details/@item.CustomerId" class="btn btn-info btn-sm"  >
+                    <span class="glyphicon glyphicon-list-alt"></span>تفاصيل
+                </a>
+                <a href="/Customers/Edit/@item.CustomerId" class="btn btn-default btn-sm " style="margin-left:10px; margin-right:10px; ">
+                    <span class="glyphicon glyphicon-edit"></span>تعديل
+                </a>
+                <a href="/Customers/Delete/@item.CustomerId" class="btn btn-danger btn-sm " >
+                    <span class="glyphicon glyphicon-trash"></span>حذف
+                </a>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

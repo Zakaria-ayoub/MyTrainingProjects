@@ -1,0 +1,84 @@
+﻿
+<h2>@ViewBag.Title</h2>
+<hr />
+<h4 id="MessageToClient" data-bind="text: MessageToClient"></h4>
+
+<div class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label col-md-2">اسم العميل: </label>
+                    <div class="col-md-10">
+                        <span class="form-control" data-bind="text: CustomerName" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">العنوان : </label>
+                    <div class="col-md-10">
+                        <span class="form-control" data-bind="text: Address" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">محمول : </label>
+                    <div class="col-md-10">
+                        <span class="form-control" data-bind="text: Tel1" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">تليفون : </label>
+                    <div class="col-md-10">
+                        <span class="form-control" data-bind="text: Tel2" />
+                    </div>
+                </div>
+                </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label col-md-3">البريد الالكتروني : </label>
+                    <div class="col-md-9">
+                        <span class="form-control" data-bind="text: Email" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3">ملاحظــات : </label>
+                    <div class="col-md-9">
+                        <span class="form-control" data-bind="text: Notes" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <table class="table-striped">
+        <tr>
+            <th class="col-md-3">نوع التوكيل</th>
+            <th class="col-md-2">رقم التوكيل</th>
+            <th class="col-md-1">الحرف</th>
+            <th class="col-md-1">السنة</th>
+            <th class="col-md-3">مكتب التوثيق</th>
+        </tr>
+        <!-- ko foreach: CustomerAuthorizations -->
+        <tr data-bind="visible: ActiveAuthorization">
+            <td class="form-group">
+                <select disabled style="font-size: 20px;" data-bind="options: AuthorizationTypeData, value: AuthorizationTypeId, optionsValue: 'AuthorizationTypeId', optionsText: 'AuthorizationTypeName', event: {change: flagAuthorizationAsEdited}"></select>
+            </td>
+            <td class="form-group"><span class="form-control input-sm" type="text" data-bind="text: AuthorizationNo, event: {change: flagAuthorizationAsEdited} , hasfocus: true"></span></td>
+            <td class="form-group"><span class="form-control input-sm" type="text" data-bind="text: AuthorizationLetter, event: {change: flagAuthorizationAsEdited}"></span></td>
+            <td class="form-group"><span class="form-control input-sm" type="text" data-bind="text: AuthorizationYear, event: {change: flagAuthorizationAsEdited}"></span></td>
+            <td class="form-group"><span class="form-control input-sm" type="text" data-bind="text: AuthorizationOffice, event: {change: flagAuthorizationAsEdited}"></span></td>
+
+        </tr>
+        <!-- /ko -->
+    </table>
+
+
+</div>
+
+

@@ -1,0 +1,23 @@
+﻿@model CustomerAuthorizations.Web.ViewModels.CustomerViewModel
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+
+@{
+    ViewBag.Title = "تفاصيل بيانات عميل";
+}
+@{string data = new JavaScriptSerializer().Serialize(Model); }
+
+@Html.Partial("_DisplayCustomer")
+<br />
+<p><a href="/" class="btn btn-default btn-sm btn3d">&laquo; رجوع إلى قائمة العملاء</a></p>
+
+@section scripts
+    {
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/customerViewModel.js"></script>
+    <script type="text/javascript">
+            var customerViewModel = new CustomerViewModel(@Html.Raw(data));
+            ko.applyBindings(customerViewModel);
+    </script>
+}

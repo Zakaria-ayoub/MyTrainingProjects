@@ -1,0 +1,28 @@
+﻿@model CustomerAuthorizations.Web.ViewModels.CustomerViewModel
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+
+@{
+    ViewBag.Title = "حذف عميل";
+}
+@{string data = new JavaScriptSerializer().Serialize(Model); }
+
+@Html.Partial("_DisplayCustomer")
+
+<p>
+    <button type="button" class="btn btn-labeled btn-danger btn3d" style="margin-left:150px;" data-bind="click: save">
+        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>&nbsp; حذف
+    </button>
+
+    <a href="/" class="btn btn-default btn3d">&laquo; رجوع إلى قائمة العملاء</a>
+</p>
+@section scripts
+    {
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/customerViewModel.js"></script>
+    <script type="text/javascript">
+            var customerViewModel = new CustomerViewModel(@Html.Raw(data));
+            ko.applyBindings(customerViewModel);
+    </script>
+}

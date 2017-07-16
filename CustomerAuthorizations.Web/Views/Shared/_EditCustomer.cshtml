@@ -1,0 +1,100 @@
+﻿
+<h2>@ViewBag.Title</h2>
+
+<h4 id="MessageToClient" data-bind="text: MessageToClient"></h4>
+<hr />
+
+<form id="Authorizationform" method="post">
+    <div class="form-horizontal">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">اسم العميل: </label>
+                        <div class="col-md-10">
+                            <input type="text" id="CustomerName" name="CustomerName" class="form-control" data-bind="value: CustomerName, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">العنوان : </label>
+                        <div class="col-md-10">
+                            <input type="text" id="Address" name="Address" class="form-control" data-bind="value: Address, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">محمول : </label>
+                        <div class="col-md-10">
+                            <input type="text" id="Tel1" name="Tel1" class="form-control" data-bind="value: Tel1, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">تليفون : </label>
+                        <div class="col-md-10">
+                            <input type="text" id="Tel2" name="Tel2" class="form-control" data-bind="value: Tel2, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">البريد الالكتروني : </label>
+                        <div class="col-md-9">
+                            <input type="text" id="EmailAddress" name="EmailAddress" class="form-control" data-bind="value: Email, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">ملاحظــات : </label>
+                        <div class="col-md-9">
+                            <input type="text" id="Notes" name="Notes" class="form-control" data-bind="value: Notes, event: {change: flagCustomerAsEdited}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table-striped" style="font-size: 20px;">
+            <tr>
+                <th class="col-md-3">نوع التوكيل</th>
+                <th class="col-md-2">رقم التوكيل</th>
+                <th class="col-md-1">الحرف</th>
+                <th class="col-md-1">السنة</th>
+                <th class="col-md-3">مكتب التوثيق</th>
+                <th class="col-md-2"><button class="btn btn-info btn3d" style="width:50%; margin:5px;" data-bind="click: addCustomerAuthorization">إضافة</button></th>
+            </tr>
+            <!-- ko foreach: CustomerAuthorizations -->
+            <tr data-bind="css: { strikeout: !ActiveAuthorization() }" style="font-size: 30px;">
+                <td class="form-group">
+                    <select name="AuthorizationTypeId" style="font-size: 20px;" data-bind="options: AuthorizationTypeData, value: AuthorizationTypeId, optionsValue: 'AuthorizationTypeId', optionsText: 'AuthorizationTypeName', event: {change: flagAuthorizationAsEdited}"></select>
+                </td>
+                <td class="form-group"><input name="AuthorizationNo" class="form-control input-sm" type="text"  data-bind="attr: {'id': 'AuthorizationNo_' + $index()} ,value: AuthorizationNo, event: {change: flagAuthorizationAsEdited} , hasfocus: true" /></td>
+                <td class="form-group"><input name="AuthorizationLetter" class="form-control input-sm" type="text" data-bind="attr: {'id': 'AuthorizationLetter_' + $index()} ,value: AuthorizationLetter, event: {change: flagAuthorizationAsEdited}" /></td>
+                <td class="form-group"><input name ="AuthorizationYear" class="form-control input-sm" type="text" data-bind="attr: {id: 'AuthorizationYear_' + $index() } ,value: AuthorizationYear, event: {change: flagAuthorizationAsEdited}" /></td>
+                <td class="form-group"><input name ="AuthorizationOffice" class="form-control input-sm" type="text" data-bind="attr: {id: 'AuthorizationOffice_' + $index() } ,value: AuthorizationOffice, event: {change: flagAuthorizationAsEdited}" /></td>
+
+                <td class="form-group col-md-2">
+                    <button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:20px;">
+                        <span class="glyphicon glyphicon-trash" data-bind="click: DeleteAuthorization"></span>
+                    </button>
+                </td>
+
+
+            </tr>
+            <!-- /ko -->
+        </table>
+        <p>
+            <button type="submit" class="btn btn-labeled btn-success btn3d" style="margin-left:50px;">
+                <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>&nbsp; حفظ
+            </button>
+            
+            
+            <a href="/" class="btn btn-default btn3d">&laquo; رجوع إلى قائمة العملاء</a>
+        </p>
+    </div>
+    <div class="error">
+        <span>No Errors</span>
+    </div>
+</form>

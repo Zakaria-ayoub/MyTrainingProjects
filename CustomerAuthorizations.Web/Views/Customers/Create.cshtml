@@ -1,0 +1,24 @@
+﻿@model CustomerAuthorizations.Web.ViewModels.CustomerViewModel
+@using System.Activities.Expressions
+@using System.Web.Script.Serialization
+
+@{
+    ViewBag.Title = "إنشاء ملف عميل جديد";
+}
+
+@{string data = new JavaScriptSerializer().Serialize(Model); }
+
+
+@Html.Partial("_EditCustomer")
+
+@section scripts
+    {
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+    <script src="~/Scripts/customerViewModel.js"></script>
+    <script type="text/javascript">
+            var customerViewModel = new CustomerViewModel(@Html.Raw(data));
+            ko.applyBindings(customerViewModel);
+    </script>
+}
